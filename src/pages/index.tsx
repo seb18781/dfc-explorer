@@ -8,8 +8,9 @@ import { StatsData } from "@defichain/whale-api-client/dist/api/stats";
 import { WhaleApiClient } from "@defichain/whale-api-client";
 import { MainNet, Network, TestNet } from '@defichain/jellyfish-network'
 import { useEffect, useState } from 'react';
+import Navigation from '@/components/Navigation';
 
-interface HomePageProps{
+interface HomePagePropsI{
   blocks: Block[]
   stats: StatsData
   transactions: Transaction[]
@@ -24,7 +25,7 @@ export default function Home(
     version: 'v0',
     network: MainNet.name
   })
-  const [data, setData] = useState<HomePageProps>({
+  const [data, setData] = useState<HomePagePropsI>({
     blocks: props.blocks,
     stats: props.stats,
     transactions: props.transactions,
@@ -63,6 +64,7 @@ export default function Home(
     <>
       <Head>
         <title>DFC-Explorer</title>
+        <meta charSet="utf-8" />
         <meta name="description" content="Just another explorer for defichain" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="symbol-defi-blockchain.png" />
@@ -70,6 +72,7 @@ export default function Home(
       <main>
         <div>
           <StatusBar stats={data.stats} />
+          <Navigation/>
           <p>Hier geht es weiter Price of DFI: { data.stats.price.usd }</p>
         </div>
       </main>
@@ -77,7 +80,7 @@ export default function Home(
   )
 }
 
-export async function getServerSideProps(): Promise<GetServerSidePropsResult<HomePageProps>> {
+export async function getServerSideProps(): Promise<GetServerSidePropsResult<HomePagePropsI>> {
   const client = new WhaleApiClient({
     url: 'https://ocean.defichain.com',
     version: 'v0',
