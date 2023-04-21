@@ -7,7 +7,7 @@ interface NavigationElementI{
 export default function NavigationElement(props: NavigationElementI){
     return(
         <>
-            <Link href={props.href}>{props.name}</Link>
+            <Link href={props.href}> {props.name} </Link>
         </>
     )
 }
