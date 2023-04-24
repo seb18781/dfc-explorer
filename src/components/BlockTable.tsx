@@ -1,5 +1,5 @@
 import { Block } from "@defichain/whale-api-client/dist/api/blocks";
-export default function BlockTable({blocks,}: {blocks: Block[]}): JSX.Element {
+export default function BlockTable({blocks}: {blocks: Block[]}): JSX.Element {
   let nowTimeSeconds: number= Math.floor(Date.now() / 1000) //Actual Time in seconds
   return (
     <div>
